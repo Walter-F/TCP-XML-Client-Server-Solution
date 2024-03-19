@@ -54,9 +54,6 @@ namespace ServerTCP
                     tcpClient.ReceiveAsync(completeArgsForReceive);
                     response.Append(Encoding.UTF8.GetString(responseData, 0, responseData.Length));
 
-                    // Logs.Text += response.ToString();
-
-                    // Создать XML-файл на стороне сервера или вставить строку для чтения от клиента
                     File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MessageForServer.xml", Encoding.UTF8.GetString(responseData, 0, completeArgsForReceive.BytesTransferred));
                     XmlSerializer ser = new XmlSerializer(typeof(Message));
                     Message message;
