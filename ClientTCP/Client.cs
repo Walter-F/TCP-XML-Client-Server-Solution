@@ -97,16 +97,16 @@ namespace ClientTCP
                     MessageBox.Show("Подключитесь к серверу, воспользовавшись соответствующей кнопкой выше");
                     return;
                 }
-
-                if (tcpClient.Connected == false)
-                {
-                    await tcpClient.ConnectAsync("127.0.0.1", 8888);
-                }
-
-                string fileText = System.IO.File.ReadAllText(filename);
-
                 try
                 {
+                    if (tcpClient.Connected == false)
+                    {
+                        await tcpClient.ConnectAsync("127.0.0.1", 8888);
+                    }
+
+                    string fileText = System.IO.File.ReadAllText(filename);
+
+              
                     byte[] requestData = Encoding.UTF8.GetBytes(fileText);
 
                     SocketAsyncEventArgs completeArgs = new SocketAsyncEventArgs();
